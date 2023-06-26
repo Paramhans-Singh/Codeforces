@@ -10,21 +10,31 @@ public class Prob381A {
             arr[i] = s.nextInt();
         }
 
-        Arrays.sort(arr);
         int seerja = 0;
         int deema = 0;
-        // int j = arr.length - 2;
-        for (int i = arr.length - 1,j=arr.length - 2;i>=0 && j>=0; i-=2, j-=2) {
-            seerja += arr[i];
-            deema += arr[j];
+        int i = 0;
+        int j = arr.length - 1;
+
+        while (i<=j) {
+            if (arr[i] > arr[j]) {
+                seerja += arr[i];
+                i++;
+            } else {
+                seerja += arr[j];
+                j--;
+            }
+            if (j>=0 && i<arr.length) {
+                if (arr[i] > arr[j]) {
+                    deema += arr[i];
+                    i++;
+                } else {
+                    deema += arr[j];
+                    j--;
+                }
+            }
+
         }
-        if(arr.length%2==0){
-           System.out.println(seerja + " " + deema);
-        }
-        else{
-            seerja+=arr[0];
-            System.out.println(seerja+" "+deema);
-        }
-        
+
+        System.out.println(seerja + " " + deema);
     }
 }
